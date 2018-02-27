@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<title>PreAlpha</title>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+
+
+</head>
+
+
+<body onload="intro()">
+
+
+	<div class="box">
+		Wpisz liczbę z zakresu 1-6
+		<br><br>
+		<input type="text" id="pole">
+		<input type="submit" value="go!" onclick="oblicz()"> 
+		<br><br>
+		<div id="suma"></div>
+	</div>
+
+	<div class="box">
+	<div id="kostka" onclick="rzut()"></div>
+	<br>	
+	<h3 id="wynik">tu będzie wynik</h3>
+	</div>
+
+		<div id="komunikat"></div>
+
+		<button id="reset" onclick="reset()"><p>Jebnij we mnie!</p></button>
+
+	<div class="plansza">
+		<div id="pionek"></div>
+	</div>
+
+
+
+
+
+
+
+
+<script>
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+	
+		function oblicz()
+		{
+			var liczba = document.getElementById("pole").value;
+			
+			if (liczba==1)document.getElementById("suma").innerHTML="Przesuwasz się o 1 pole do przodu";
+			else if (liczba==2)document.getElementById("suma").innerHTML="Przesuwasz się o 2 pola do przodu";
+			else if (liczba==3) document.getElementById("suma").innerHTML="Przesuwasz się o 3 pola do przodu";
+			else if (liczba==4) document.getElementById("suma").innerHTML="Przesuwasz się o 4 pola do przodu";
+			else if (liczba==5) document.getElementById("suma").innerHTML="Przesuwasz się o 5 pól do przodu";
+			else if (liczba==6) document.getElementById("suma").innerHTML="Przesuwasz się o 6 pól do przodu";
+			else document.getElementById("suma").innerHTML="Instrukcja była zbyt trudna?";
+		
+		}
+	
+	</script>
+
+<script>
+	 var pos = 0;
+     var roll = new Audio("roll.mp3");
+	 var wall= new Audio("wall.mp3");
+	 var oja= new Audio("oja.mp3");
+	 var artefakt= new Audio("artefakt.mp3");
+	  var prdl= new Audio("prdl.mp3");
+	
+	function rzut(){
+
+    var kosc = document.getElementById("kostka");
+    var k6 = Math.floor(Math.random() * 6) + 1;
+   
+  
+    var suma = document.getElementById("suma");
+    var elem = document.getElementById("pionek"); 
+    
+
+
+  
+    (function box(){ // wrap everything in a self-invoking function, not to expose "times"
+  powtorzenia = k6; // how many times to run
+  (function ruch(){
+  	
+      pos += 50;
+      elem.style.left = pos + 'px'; 
+  
+
+      if(pos >= 550){
+      	 pos -= 50;
+      	document.getElementById("komunikat").innerHTML="<h1>Nie można iść dalej!</h1>";
+      	wall.play();
+      }
+
+     
+
+    if( --powtorzenia ) 
+      setTimeout(ruch, 400);
+  })();
+})();
+
+if(k6==1){
+	kostka.style.backgroundImage="url(1.png)";
+	 oja.play();
+}
+if(k6==2){
+	kostka.style.backgroundImage="url(2.png)";
+	 oja.play();
+}
+if(k6==3){
+	kostka.style.backgroundImage="url(3.png)";
+	roll.play();
+}
+if(k6==4){
+	kostka.style.backgroundImage="url(4.png)";
+	roll.play();
+}
+if(k6==5){
+	kostka.style.backgroundImage="url(5.png)";
+	prdl.play();
+}
+if(k6==6){
+	kostka.style.backgroundImage="url(6.png)";
+	prdl.play();
+}
+
+
+
+
+
+    
+    if(k6 == 1)
+        wynik.innerHTML = "Przesuwasz się o  "+k6+" pole do przodu.";
+
+
+
+     
+     else if(k6 >1 && k6<5)
+        wynik.innerHTML = "Przesuwasz się o  "+k6+" pola do przodu.";
+    
+       else if(k6 >4)
+        wynik.innerHTML = "Przesuwasz się o  "+k6+" pól do przodu.";       
+}
+
+ function intro(){
+ 	artefakt.play();
+ }
+
+
+ function reset(){
+ 	location.reload();
+	
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+	
+</body>
+</html>
